@@ -1,0 +1,24 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: worklog-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      TZ: ${TZ:-Europe/Berlin}
+      DATABASE_URL: file:/app/data/dev.db
+      SQLITE_DB_PATH: /app/data/dev.db
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-admin}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin123}
+      SESSION_COOKIE_NAME: ${SESSION_COOKIE_NAME:-worklog_admin_session}
+      SESSION_TTL_HOURS: ${SESSION_TTL_HOURS:-24}
+      RUN_DB_SEED: ${RUN_DB_SEED:-auto}
+    volumes:
+      - worklog-data:/app/data
+
+volumes:
+  worklog-data:

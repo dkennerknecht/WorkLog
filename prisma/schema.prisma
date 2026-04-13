@@ -1,0 +1,96 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Task {
+  id            String   @id @default(cuid())
+  name          String   @unique
+  sortOrder     Int      @default(0)
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  deactivatedAt DateTime?
+}
+
+model Person {
+  id            String   @id @default(cuid())
+  name          String   @unique
+  sortOrder     Int      @default(0)
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  deactivatedAt DateTime?
+}
+
+model Location {
+  id            String   @id @default(cuid())
+  name          String   @unique
+  sortOrder     Int      @default(0)
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  deactivatedAt DateTime?
+}
+
+model Entry {
+  id        String         @id @default(cuid())
+  entryDate DateTime
+  createdAt DateTime       @default(now())
+  createdBy String?
+  versions  EntryVersion[]
+
+  @@index([entryDate])
+}
+
+model EntryVersion {
+  id            String   @id @default(cuid())
+  entryId       String
+  version       Int
+  isCurrent     Boolean  @default(true)
+  tasksJson     Json
+  peopleJson    Json
+  locationsJson Json
+  changedAt     DateTime @default(now())
+  changedBy     String?
+  changeNote    String?
+  entry         Entry    @relation(fields: [entryId], references: [id], onDelete: Cascade)
+
+  @@unique([entryId, version])
+  @@index([entryId, isCurrent])
+}
+
+model AdminUser {
+  id           String         @id @default(cuid())
+  username     String         @unique
+  passwordHash String
+  isActive     Boolean        @default(true)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  sessions     AdminSession[]
+}
+
+model AdminSession {
+  id          String    @id @default(cuid())
+  adminUserId String
+  tokenHash   String    @unique
+  expiresAt   DateTime
+  createdAt   DateTime  @default(now())
+  adminUser   AdminUser @relation(fields: [adminUserId], references: [id], onDelete: Cascade)
+
+  @@index([adminUserId])
+  @@index([expiresAt])
+}
+
+model UiSetting {
+  id           Int      @id @default(1)
+  kioskPalette String   @default("blue")
+  kioskMode    String   @default("light")
+  adminPalette String   @default("blue")
+  adminMode    String   @default("light")
+  updatedAt    DateTime @updatedAt
+}

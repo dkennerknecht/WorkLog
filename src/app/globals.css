@@ -1,0 +1,460 @@
+@import "tailwindcss";
+
+@theme {
+  --color-blue-50: #ecf1f9;
+  --color-blue-100: #d4dff2;
+  --color-blue-200: #adc2e6;
+  --color-blue-300: #82a3d8;
+  --color-blue-400: #5883cb;
+  --color-blue-500: #3968b7;
+  --color-blue-600: #2b508c;
+  --color-blue-700: #1f3a65;
+  --color-blue-800: #12213a;
+  --color-blue-900: #08101b;
+  --color-blue-950: #050910;
+
+  --color-navy-50: oklch(96% 0.01 250);
+  --color-navy-100: oklch(91% 0.02 250);
+  --color-navy-200: oklch(84% 0.03 250);
+  --color-navy-300: oklch(75% 0.05 250);
+  --color-navy-400: oklch(65% 0.07 251);
+  --color-navy-500: oklch(55% 0.09 251);
+  --color-navy-600: oklch(46% 0.09 251);
+  --color-navy-700: oklch(36% 0.08 251);
+  --color-navy-800: oklch(28% 0.06 251);
+  --color-navy-850: oklch(24% 0.05 251);
+  --color-navy-900: oklch(20% 0.04 251);
+  --color-navy-950: oklch(16% 0.03 251);
+
+  --color-jade-50: oklch(0.966 0.017 247.99);
+  --color-jade-100: oklch(0.939 0.03 249.68);
+  --color-jade-200: oklch(0.878 0.062 249.26);
+  --color-jade-300: oklch(0.818 0.091 248.03);
+  --color-jade-400: oklch(0.757 0.121 246.08);
+  --color-jade-500: oklch(0.695 0.141 245.28);
+  --color-jade-600: oklch(0.637 0.124 246.59);
+  --color-jade-700: oklch(0.577 0.11 247.84);
+  --color-jade-800: oklch(0.516 0.098 250.27);
+  --color-jade-900: oklch(0.456 0.084 252.19);
+  --color-jade-950: oklch(0.294 0.054 249.26);
+}
+
+:root {
+  --color-navy-50: oklch(96% 0.01 250);
+  --color-navy-100: oklch(91% 0.02 250);
+  --color-navy-200: oklch(84% 0.03 250);
+  --color-navy-300: oklch(75% 0.05 250);
+  --color-navy-400: oklch(65% 0.07 251);
+  --color-navy-500: oklch(55% 0.09 251);
+  --color-navy-600: oklch(46% 0.09 251);
+  --color-navy-700: oklch(36% 0.08 251);
+  --color-navy-800: oklch(28% 0.06 251);
+  --color-navy-850: oklch(24% 0.05 251);
+  --color-navy-900: oklch(20% 0.04 251);
+  --color-navy-950: oklch(16% 0.03 251);
+
+  --color-jade-50: oklch(0.966 0.017 247.99);
+  --color-jade-100: oklch(0.939 0.03 249.68);
+  --color-jade-200: oklch(0.878 0.062 249.26);
+  --color-jade-300: oklch(0.818 0.091 248.03);
+  --color-jade-400: oklch(0.757 0.121 246.08);
+  --color-jade-500: oklch(0.695 0.141 245.28);
+  --color-jade-600: oklch(0.637 0.124 246.59);
+  --color-jade-700: oklch(0.577 0.11 247.84);
+  --color-jade-800: oklch(0.516 0.098 250.27);
+  --color-jade-900: oklch(0.456 0.084 252.19);
+  --color-jade-950: oklch(0.294 0.054 249.26);
+
+  --bg-app: var(--color-navy-950);
+  --bg-panel: var(--color-navy-900);
+  --bg-panel-2: var(--color-navy-850);
+  --bg-card: var(--color-navy-800);
+  --bg-card-hover: var(--color-navy-700);
+  --bg-selected: oklch(32% 0.08 252);
+
+  --border-subtle: oklch(36% 0.05 252 / 0.55);
+  --border-strong: oklch(50% 0.08 252 / 0.75);
+
+  --text-primary: oklch(95% 0.01 250);
+  --text-muted: oklch(78% 0.02 250);
+  --text-dim: oklch(65% 0.02 250);
+
+  --accent-primary: oklch(70% 0.14 230);
+  --accent-success: oklch(78% 0.17 150);
+  --accent-soft: oklch(78% 0.08 150 / 0.18);
+
+  --brand-50: #ecf1f9;
+  --brand-100: #d4dff2;
+  --brand-300: #82a3d8;
+  --brand-500: #3968b7;
+  --brand-600: #2b508c;
+  --brand-700: #1f3a65;
+
+  --theme-bg: #eef4ff;
+  --theme-surface: #ffffff;
+  --theme-surface-muted: #eaf1ff;
+  --theme-border: #b7c9e8;
+  --theme-border-soft: #d8e4f8;
+  --theme-text-strong: #0b1220;
+  --theme-text: #1f304a;
+  --theme-text-muted: #385174;
+  --theme-hover: #dbe8ff;
+  --selection-bg: var(--brand-50);
+  --selection-border: var(--brand-500);
+  --selection-text: var(--theme-text-strong);
+  --shadow-card: 0 4px 14px rgba(15, 23, 42, 0.08);
+}
+
+@theme inline {
+  --font-sans: var(--font-outfit);
+  --font-mono: var(--font-source-code);
+
+  --color-brand-50: var(--brand-50);
+  --color-brand-100: var(--brand-100);
+  --color-brand-300: var(--brand-300);
+  --color-brand-500: var(--brand-500);
+  --color-brand-600: var(--brand-600);
+  --color-brand-700: var(--brand-700);
+
+  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.05);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.theme-scope {
+  background: var(--theme-bg);
+  color: var(--theme-text-strong);
+}
+
+.theme-scope.readable-ui {
+  font-size: 1.125rem;
+  line-height: 1.55;
+}
+
+.theme-scope.readable-ui .text-xs {
+  font-size: 1rem !important;
+  line-height: 1.45 !important;
+}
+
+.theme-scope.readable-ui .text-sm {
+  font-size: 1.0625rem !important;
+  line-height: 1.5 !important;
+}
+
+.theme-scope.readable-ui .text-base {
+  font-size: 1.1875rem !important;
+  line-height: 1.55 !important;
+}
+
+.theme-scope.readable-ui .text-lg {
+  font-size: 1.3125rem !important;
+  line-height: 1.55 !important;
+}
+
+.theme-scope.readable-ui .text-xl {
+  font-size: 1.5rem !important;
+  line-height: 1.45 !important;
+}
+
+.theme-scope.readable-ui .text-2xl {
+  font-size: 1.875rem !important;
+  line-height: 1.35 !important;
+}
+
+.theme-scope.readable-ui .text-3xl {
+  font-size: 2.25rem !important;
+  line-height: 1.25 !important;
+}
+
+.theme-scope.readable-ui .text-4xl {
+  font-size: 2.75rem !important;
+  line-height: 1.15 !important;
+}
+
+.theme-scope.mode-light {
+  --theme-bg: #eef4ff;
+  --theme-surface: #ffffff;
+  --theme-surface-muted: #eaf1ff;
+  --theme-border: #b7c9e8;
+  --theme-border-soft: #d8e4f8;
+  --theme-text-strong: #0b1220;
+  --theme-text: #1f304a;
+  --theme-text-muted: #385174;
+  --theme-hover: #dbe8ff;
+  --selection-bg: var(--brand-50);
+  --selection-border: var(--brand-500);
+  --selection-text: var(--theme-text-strong);
+  --shadow-card: 0 4px 14px rgba(15, 23, 42, 0.08);
+}
+
+.theme-scope.mode-dark {
+  --theme-bg: #030712;
+  --theme-surface: #10203a;
+  --theme-surface-muted: #163058;
+  --theme-border: #2f5c99;
+  --theme-border-soft: #22457a;
+  --theme-text-strong: #ffffff;
+  --theme-text: #edf4ff;
+  --theme-text-muted: #d4e3ff;
+  --theme-hover: #1d3f72;
+  --selection-bg: color-mix(in oklab, var(--brand-700) 45%, var(--theme-surface) 55%);
+  --selection-border: color-mix(in oklab, var(--brand-300) 68%, var(--theme-border) 32%);
+  --selection-text: #f8fafc;
+  --shadow-card: 0 8px 24px rgba(2, 6, 23, 0.5);
+}
+
+.theme-scope.palette-blue {
+  --brand-50: #ecf1f9;
+  --brand-100: #d4dff2;
+  --brand-300: #82a3d8;
+  --brand-500: #3968b7;
+  --brand-600: #2b508c;
+  --brand-700: #1f3a65;
+}
+
+.theme-scope.palette-emerald {
+  --brand-50: #ecfdf5;
+  --brand-100: #d1fae5;
+  --brand-300: #6ee7b7;
+  --brand-500: #10b981;
+  --brand-600: #059669;
+  --brand-700: #047857;
+}
+
+.theme-scope.palette-amber {
+  --brand-50: #fffbeb;
+  --brand-100: #fef3c7;
+  --brand-300: #fcd34d;
+  --brand-500: #f59e0b;
+  --brand-600: #d97706;
+  --brand-700: #b45309;
+}
+
+.theme-scope.palette-violet {
+  --brand-50: #f5f3ff;
+  --brand-100: #ede9fe;
+  --brand-300: #c4b5fd;
+  --brand-500: #8b5cf6;
+  --brand-600: #7c3aed;
+  --brand-700: #6d28d9;
+}
+
+.theme-scope.palette-navy {
+  --brand-50: color-mix(in oklab, var(--accent-primary) 16%, white 84%);
+  --brand-100: color-mix(in oklab, var(--accent-primary) 30%, white 70%);
+  --brand-300: color-mix(in oklab, var(--accent-primary) 58%, white 42%);
+  --brand-500: var(--accent-primary);
+  --brand-600: color-mix(in oklab, var(--accent-primary) 86%, black 14%);
+  --brand-700: color-mix(in oklab, var(--accent-primary) 70%, black 30%);
+}
+
+.theme-scope.palette-jade {
+  --brand-50: var(--color-jade-50);
+  --brand-100: var(--color-jade-100);
+  --brand-300: var(--color-jade-300);
+  --brand-500: var(--color-jade-500);
+  --brand-600: var(--color-jade-600);
+  --brand-700: var(--color-jade-700);
+}
+
+.theme-scope.mode-dark.palette-navy {
+  --theme-bg: var(--bg-app);
+  --theme-surface: var(--bg-panel);
+  --theme-surface-muted: var(--bg-panel-2);
+  --theme-border: var(--border-strong);
+  --theme-border-soft: var(--border-subtle);
+  --theme-text-strong: var(--text-primary);
+  --theme-text: var(--text-muted);
+  --theme-text-muted: var(--text-dim);
+  --theme-hover: var(--bg-card-hover);
+  --selection-bg: var(--bg-selected);
+  --selection-border: var(--accent-primary);
+  --selection-text: var(--text-primary);
+  --shadow-card: 0 10px 28px rgba(1, 5, 18, 0.55);
+}
+
+.theme-scope .bg-slate-50 {
+  background-color: color-mix(in oklab, var(--theme-surface) 72%, var(--theme-bg) 28%) !important;
+}
+
+.theme-scope .bg-slate-100 {
+  background-color: var(--theme-surface-muted) !important;
+}
+
+.theme-scope .bg-white {
+  background-color: var(--theme-surface) !important;
+}
+
+.theme-scope .border-slate-200 {
+  border-color: var(--theme-border) !important;
+}
+
+.theme-scope .border-slate-100 {
+  border-color: var(--theme-border-soft) !important;
+}
+
+.theme-scope .text-slate-900 {
+  color: var(--theme-text-strong) !important;
+}
+
+.theme-scope .text-slate-800,
+.theme-scope .text-slate-700 {
+  color: var(--theme-text) !important;
+}
+
+.theme-scope .text-slate-600,
+.theme-scope .text-slate-500 {
+  color: var(--theme-text-muted) !important;
+}
+
+.theme-scope .hover\:bg-slate-100:hover,
+.theme-scope .hover\:bg-slate-50:hover {
+  background-color: var(--theme-hover) !important;
+}
+
+.theme-scope .state-selected {
+  border-color: var(--selection-border) !important;
+  background-color: var(--selection-bg) !important;
+  color: var(--selection-text) !important;
+}
+
+.theme-scope .state-selected .text-slate-900,
+.theme-scope .state-selected .text-slate-800,
+.theme-scope .state-selected .text-slate-700,
+.theme-scope .state-selected .text-slate-600,
+.theme-scope .state-selected .text-slate-500 {
+  color: var(--selection-text) !important;
+}
+
+.theme-scope .btn-inactive {
+  border: 1px solid var(--theme-border) !important;
+  background-color: var(--theme-surface-muted) !important;
+  color: var(--theme-text-muted) !important;
+  box-shadow: none !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+.theme-scope.mode-dark .panel-strong {
+  background-color: color-mix(in oklab, var(--theme-surface) 88%, black 12%) !important;
+  border-color: var(--theme-border) !important;
+  box-shadow:
+    0 14px 30px rgba(2, 6, 23, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+}
+
+.theme-scope.mode-dark .table-strong {
+  background-color: var(--theme-surface) !important;
+  border-color: var(--theme-border) !important;
+}
+
+.theme-scope.mode-dark .table-strong thead {
+  background-color: color-mix(in oklab, var(--theme-surface-muted) 78%, var(--theme-surface) 22%) !important;
+}
+
+.theme-scope.mode-dark .table-strong tbody tr {
+  background-color: color-mix(in oklab, var(--theme-surface) 88%, black 12%);
+}
+
+.theme-scope.mode-dark .table-strong tbody tr:nth-child(even) {
+  background-color: color-mix(in oklab, var(--theme-surface) 82%, black 18%);
+}
+
+.theme-scope.mode-dark .table-strong tbody tr:hover {
+  background-color: color-mix(in oklab, var(--theme-hover) 75%, var(--theme-surface) 25%) !important;
+}
+
+.theme-scope a[href],
+.theme-scope button:not(:disabled),
+.theme-scope [role="button"],
+.theme-scope summary {
+  cursor: pointer;
+}
+
+.theme-scope button:disabled {
+  cursor: not-allowed;
+}
+
+.theme-scope a[href]:active,
+.theme-scope button:not(:disabled):active,
+.theme-scope [role="button"]:active,
+.theme-scope summary:active {
+  transform: translateY(1px) scale(0.985) !important;
+  filter: brightness(0.9) saturate(1.08) !important;
+  box-shadow:
+    inset 0 2px 8px rgba(2, 6, 23, 0.35),
+    0 2px 8px rgba(2, 6, 23, 0.2) !important;
+}
+
+@media (hover: hover) {
+  .theme-scope a[href],
+  .theme-scope button:not(:disabled),
+  .theme-scope [role="button"],
+  .theme-scope summary {
+    transition:
+      filter 140ms ease,
+      box-shadow 140ms ease,
+      transform 140ms ease;
+  }
+
+  .theme-scope a[href]:hover,
+  .theme-scope button:not(:disabled):hover,
+  .theme-scope [role="button"]:hover,
+  .theme-scope summary:hover {
+    filter: brightness(1.06);
+  }
+
+  .theme-scope button:not(:disabled):hover,
+  .theme-scope [role="button"]:hover {
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);
+    transform: translateY(-1px);
+  }
+
+  .theme-scope .kiosk-choice:not(:disabled):hover,
+  .theme-scope .calendar-choice:not(:disabled):hover {
+    border-color: var(--brand-300) !important;
+    box-shadow: 0 14px 28px rgba(15, 23, 42, 0.28) !important;
+    transform: translateY(-3px) scale(1.02) !important;
+    filter: brightness(1.08) !important;
+  }
+
+  .theme-scope.mode-light .kiosk-choice:not(:disabled):not(.state-selected):hover,
+  .theme-scope.mode-light .calendar-choice:not(:disabled):not(.state-selected):hover {
+    background-color: color-mix(in oklab, var(--brand-100) 58%, #ffffff 42%) !important;
+  }
+
+  .theme-scope.mode-dark .kiosk-choice:not(:disabled):not(.state-selected):hover,
+  .theme-scope.mode-dark .calendar-choice:not(:disabled):not(.state-selected):hover {
+    background-color: color-mix(in oklab, var(--brand-700) 42%, var(--theme-surface) 58%) !important;
+  }
+
+  .theme-scope .btn-inactive:hover {
+    border-color: var(--theme-border) !important;
+    background-color: var(--theme-surface-muted) !important;
+    color: var(--theme-text-muted) !important;
+    box-shadow: none !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
+.theme-scope .kiosk-choice:not(:disabled):active,
+.theme-scope .calendar-choice:not(:disabled):active {
+  border-color: var(--brand-500) !important;
+  box-shadow:
+    inset 0 2px 10px rgba(2, 6, 23, 0.35),
+    0 3px 10px rgba(2, 6, 23, 0.2) !important;
+  transform: translateY(1px) scale(0.985) !important;
+}
+
+.theme-scope.mode-light .kiosk-choice:not(:disabled):not(.state-selected):active,
+.theme-scope.mode-light .calendar-choice:not(:disabled):not(.state-selected):active {
+  background-color: color-mix(in oklab, var(--brand-300) 48%, #ffffff 52%) !important;
+}
+
+.theme-scope.mode-dark .kiosk-choice:not(:disabled):not(.state-selected):active,
+.theme-scope.mode-dark .calendar-choice:not(:disabled):not(.state-selected):active {
+  background-color: color-mix(in oklab, var(--brand-700) 52%, var(--theme-surface) 48%) !important;
+}

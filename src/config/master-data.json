@@ -1,0 +1,12 @@
+{
+  "tasks": [
+    "Kontrolle Glatteis",
+    "Streuen",
+    "Parkplätze",
+    "Räumen",
+    "Garagendächer räumen",
+    "Rasenmähen"
+  ],
+  "people": ["Herbert", "Peter", "Klaus", "Martin"],
+  "locations": ["Bachsiedlung", "Argen Siedlung", "Kappelenweg", "Weiherweg", "Maisenweg", "Am Sportplatz"]
+}
