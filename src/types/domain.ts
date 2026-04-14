@@ -40,3 +40,66 @@ export type OptionsResponse = {
   people: OptionItem[];
   locations: OptionItem[];
 };
+
+export type ExportLocationOption = {
+  key: string;
+  name: string;
+  sourceLocationId: string | null;
+  sourceLocationName: string | null;
+  isVirtual: boolean;
+};
+
+export type ExportTemplateDto = {
+  id: string;
+  exportLocationKey: string;
+  taskId: string;
+  number: string;
+  productName: string;
+  price: string;
+  discount: string;
+  uvp: string;
+  unit: string;
+  type: string;
+  vatRateId: string;
+  workHours: string;
+  groupSku: string;
+  groupName: string;
+  groupIndex: string;
+  productId: string;
+  groupId: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ExportPreviewRowDto = {
+  date: string;
+  taskId: string;
+  taskName: string;
+  quantity: number;
+  description: string;
+  number: string;
+};
+
+export type ExportPreviewResponse = {
+  month: string;
+  exportLocationKey: string;
+  exportLocationName: string;
+  rows: ExportPreviewRowDto[];
+  missingMappings: Array<{ taskId: string; taskName: string }>;
+  canCopy: boolean;
+  clipboardText: string | null;
+};
+
+export type ExportMappingCellDto = {
+  exportLocationKey: string;
+  taskId: string;
+  number: string;
+  productName: string;
+  updatedAt: string;
+};
+
+export type ExportMappingControlResponse = {
+  exportLocations: ExportLocationOption[];
+  tasks: OptionItem[];
+  mappings: ExportMappingCellDto[];
+};

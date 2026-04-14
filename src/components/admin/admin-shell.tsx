@@ -52,6 +52,29 @@ export function AdminShell({ username, children }: { username: string; children:
             <Link href="/admin/entries" className={cn("block rounded-lg px-3 py-2 text-sm", pathname.startsWith("/admin/entries") ? "state-selected text-slate-900" : "text-slate-700 hover:bg-slate-100")}>
               Einträge
             </Link>
+            <Link href="/admin/export" className={cn("block rounded-lg px-3 py-2 text-sm", pathname.startsWith("/admin/export") && !pathname.startsWith("/admin/export-mapping") ? "state-selected text-slate-900" : "text-slate-700 hover:bg-slate-100")}>
+              Export
+            </Link>
+            <Link
+              href="/admin/export-mapping"
+              className={cn(
+                "block rounded-lg px-3 py-2 text-sm",
+                pathname.startsWith("/admin/export-mapping") && !pathname.startsWith("/admin/export-mapping-control")
+                  ? "state-selected text-slate-900"
+                  : "text-slate-700 hover:bg-slate-100"
+              )}
+            >
+              Export-Mapping
+            </Link>
+            <Link
+              href="/admin/export-mapping-control"
+              className={cn(
+                "block rounded-lg px-3 py-2 text-sm",
+                pathname.startsWith("/admin/export-mapping-control") ? "state-selected text-slate-900" : "text-slate-700 hover:bg-slate-100"
+              )}
+            >
+              Mapping-Kontrolle
+            </Link>
             <Link href="/admin/settings" className={cn("block rounded-lg px-3 py-2 text-sm", pathname.startsWith("/admin/settings") ? "state-selected text-slate-900" : "text-slate-700 hover:bg-slate-100")}>
               Einstellungen
             </Link>

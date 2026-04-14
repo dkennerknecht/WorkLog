@@ -2,7 +2,7 @@ import "dotenv/config";
 import crypto from "node:crypto";
 import { PrismaClient } from "@prisma/client";
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from "vitest";
-import { createEntry, listEntriesForDate, listEntriesForMonth, updateEntry } from "@/server/services";
+import { createEntry, createMasterRecord, listEntriesForDate, listEntriesForMonth, updateEntry } from "@/server/services";
 
 const prisma = new PrismaClient();
 
@@ -99,5 +99,26 @@ describe("entry services integration", () => {
 
     expect(updated.version).toBe(2);
     expect(updated.changeNote).toBe("korrigiert");
+  });
+
+  it("rejects creating an already active master record with clear message", async () => {
+    const existing = await prisma.task.findUnique({ where: { id: taskId } });
+    expect(existing).not.toBeNull();
+    await expect(createMasterRecord(prisma, "task", existing!.name)).rejects.toThrow(/existiert bereits/i);
+  });
+
+  it("reactivates deactivated master record instead of creating duplicate", async () => {
+    const existing = await prisma.task.findUnique({ where: { id: taskId } });
+    expect(existing).not.toBeNull();
+
+    await prisma.task.update({
+      where: { id: taskId },
+      data: { isActive: false, deactivatedAt: new Date() }
+    });
+
+    const reactivated = await createMasterRecord(prisma, "task", existing!.name);
+    expect(reactivated.id).toBe(taskId);
+    expect(reactivated.isActive).toBe(true);
+    expect(reactivated.deactivatedAt).toBeNull();
   });
 });

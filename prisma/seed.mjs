@@ -14,11 +14,11 @@ const locations = masterData.locations;
 
 async function upsertByName(model, values) {
   await Promise.all(
-    values.map((name) =>
+    values.map((name, index) =>
       model.upsert({
         where: { name },
-        update: { isActive: true, deactivatedAt: null },
-        create: { name, isActive: true }
+        update: { isActive: true, deactivatedAt: null, sortOrder: index + 1 },
+        create: { name, isActive: true, sortOrder: index + 1 }
       })
     )
   );

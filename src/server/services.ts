@@ -350,15 +350,68 @@ export async function listEntriesForAdmin(db: PrismaLike, month?: string): Promi
 }
 
 export async function createMasterRecord(db: PrismaLike, type: MasterRecordType, name: string) {
-  const sortOrder = await getNextSortOrder(db, type);
+  const trimmedName = name.trim();
+  if (trimmedName.length === 0) {
+    throw new Error("Name darf nicht leer sein.");
+  }
 
   if (type === "task") {
-    return db.task.create({ data: { name: name.trim(), isActive: true, sortOrder } });
+    const existing = await db.task.findUnique({ where: { name: trimmedName } });
+    if (existing) {
+      if (existing.isActive) {
+        throw new Error(`Tätigkeit "${trimmedName}" existiert bereits.`);
+      }
+
+      return db.task.update({
+        where: { id: existing.id },
+        data: {
+          isActive: true,
+          deactivatedAt: null
+        }
+      });
+    }
+
+    const sortOrder = await getNextSortOrder(db, type);
+    return db.task.create({ data: { name: trimmedName, isActive: true, sortOrder } });
   }
+
   if (type === "person") {
-    return db.person.create({ data: { name: name.trim(), isActive: true, sortOrder } });
+    const existing = await db.person.findUnique({ where: { name: trimmedName } });
+    if (existing) {
+      if (existing.isActive) {
+        throw new Error(`Person "${trimmedName}" existiert bereits.`);
+      }
+
+      return db.person.update({
+        where: { id: existing.id },
+        data: {
+          isActive: true,
+          deactivatedAt: null
+        }
+      });
+    }
+
+    const sortOrder = await getNextSortOrder(db, type);
+    return db.person.create({ data: { name: trimmedName, isActive: true, sortOrder } });
   }
-  return db.location.create({ data: { name: name.trim(), isActive: true, sortOrder } });
+
+  const existing = await db.location.findUnique({ where: { name: trimmedName } });
+  if (existing) {
+    if (existing.isActive) {
+      throw new Error(`Ort "${trimmedName}" existiert bereits.`);
+    }
+
+    return db.location.update({
+      where: { id: existing.id },
+      data: {
+        isActive: true,
+        deactivatedAt: null
+      }
+    });
+  }
+
+  const sortOrder = await getNextSortOrder(db, type);
+  return db.location.create({ data: { name: trimmedName, isActive: true, sortOrder } });
 }
 
 export async function updateMasterRecord(

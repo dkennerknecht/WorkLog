@@ -15,6 +15,7 @@ model Task {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   deactivatedAt DateTime?
+  exportConfigs ExportTemplate[]
 }
 
 model Person {
@@ -35,6 +36,32 @@ model Location {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   deactivatedAt DateTime?
+}
+
+model ExportTemplate {
+  id                String   @id @default(cuid())
+  exportLocationKey String
+  taskId            String
+  number            String
+  productName       String
+  price             String
+  discount          String
+  uvp               String
+  unit              String
+  type              String
+  vatRateId         String
+  workHours         String
+  groupSku          String
+  groupName         String
+  groupIndex        String
+  productId         String
+  groupId           String
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  task              Task     @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  @@unique([exportLocationKey, taskId])
+  @@index([exportLocationKey])
 }
 
 model Entry {
