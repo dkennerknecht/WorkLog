@@ -10,7 +10,9 @@ export default async function CaptureLayout({ children }: { children: React.Reac
 
   return (
     <WizardProvider>
-      <div className={cn("min-h-screen bg-slate-100 p-4 sm:p-6 readable-ui", themeClasses)}>{children}</div>
+      <div className={cn("h-[100dvh] overflow-hidden bg-slate-100 p-2 sm:p-3 readable-ui", themeClasses)}>
+        <div className="h-full min-h-0 w-full">{children}</div>
+      </div>
     </WizardProvider>
   );
 }

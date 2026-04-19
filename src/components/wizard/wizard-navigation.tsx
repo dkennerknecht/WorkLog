@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/cn";
 
 type WizardNavigationProps = {
   onBack?: () => void;
@@ -14,6 +15,7 @@ type WizardNavigationProps = {
   nextError?: string | null;
   loading?: boolean;
   touchOptimized?: boolean;
+  className?: string;
 };
 
 export function WizardNavigation({
@@ -26,7 +28,8 @@ export function WizardNavigation({
   disabledReason,
   nextError,
   loading,
-  touchOptimized = false
+  touchOptimized = false,
+  className
 }: WizardNavigationProps) {
   const [showHint, setShowHint] = useState(false);
   const [hintVersion, setHintVersion] = useState(0);
@@ -68,10 +71,10 @@ export function WizardNavigation({
   }
 
   return (
-    <div className="mt-6">
+    <div className={cn("mt-6", className)}>
       <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">
         {onBack ? (
-          <Button type="button" variant="secondary" onClick={onBack} className={touchOptimized ? "h-14 min-w-44 px-6 text-lg" : "min-w-28"}>
+          <Button type="button" variant="secondary" onClick={onBack} className={touchOptimized ? "h-16 min-w-48 px-7 text-2xl font-bold" : "min-w-28"}>
             {backLabel}
           </Button>
         ) : (
@@ -104,7 +107,11 @@ export function WizardNavigation({
             title={nextError ?? (nextDisabled ? hintText : undefined)}
             aria-disabled={Boolean(nextDisabled) || Boolean(lockNext) || Boolean(loading)}
             disabled={Boolean(loading) || Boolean(lockNext)}
-            className={touchOptimized ? `h-14 min-w-44 px-6 text-lg ${nextDisabled || lockNext ? "btn-inactive" : ""}` : `min-w-28 ${nextDisabled || lockNext ? "btn-inactive" : ""}`}
+            className={
+              touchOptimized
+                ? `h-16 min-w-48 px-7 text-2xl font-bold ${nextDisabled || lockNext ? "btn-inactive" : ""}`
+                : `min-w-28 ${nextDisabled || lockNext ? "btn-inactive" : ""}`
+            }
           >
             {loading ? "Speichere..." : nextLabel}
           </Button>

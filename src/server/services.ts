@@ -311,7 +311,7 @@ export async function listEntriesForMonth(db: PrismaLike, monthValue: string): P
 export async function listEntriesForAdmin(db: PrismaLike, month?: string): Promise<EntryDto[]> {
   if (!month) {
     const entries = await db.entry.findMany({
-      orderBy: [{ entryDate: "desc" }, { createdAt: "desc" }],
+      orderBy: [{ entryDate: "asc" }, { createdAt: "asc" }],
       include: {
         versions: {
           where: { isCurrent: true },
@@ -336,7 +336,7 @@ export async function listEntriesForAdmin(db: PrismaLike, month?: string): Promi
         lte: end
       }
     },
-    orderBy: [{ entryDate: "desc" }, { createdAt: "desc" }],
+    orderBy: [{ entryDate: "asc" }, { createdAt: "asc" }],
     include: {
       versions: {
         where: { isCurrent: true },

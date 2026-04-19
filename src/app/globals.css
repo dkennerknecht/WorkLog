@@ -420,20 +420,21 @@
     filter: brightness(1.08) !important;
   }
 
-  .theme-scope.mode-light .kiosk-choice:not(:disabled):not(.state-selected):hover,
-  .theme-scope.mode-light .calendar-choice:not(:disabled):not(.state-selected):hover {
-    background-color: color-mix(in oklab, var(--brand-100) 58%, #ffffff 42%) !important;
-  }
-
-  .theme-scope.mode-dark .kiosk-choice:not(:disabled):not(.state-selected):hover,
-  .theme-scope.mode-dark .calendar-choice:not(:disabled):not(.state-selected):hover {
-    background-color: color-mix(in oklab, var(--brand-700) 42%, var(--theme-surface) 58%) !important;
-  }
-
   .theme-scope .btn-inactive:hover {
     border-color: var(--theme-border) !important;
     background-color: var(--theme-surface-muted) !important;
     color: var(--theme-text-muted) !important;
+    box-shadow: none !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
+@media (hover: none) {
+  .theme-scope .kiosk-choice:not(:disabled):hover,
+  .theme-scope .calendar-choice:not(:disabled):hover {
+    border-color: var(--theme-border) !important;
+    background-color: var(--theme-surface) !important;
     box-shadow: none !important;
     transform: none !important;
     filter: none !important;
